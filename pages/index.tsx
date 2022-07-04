@@ -43,7 +43,7 @@ const Home: NextPage = () => {
             }}
             transition={{
               duration: 0.625,
-              delay: 3.5,
+              delay: 2.5,
             }}
           >
             <motion.div
@@ -109,7 +109,7 @@ const Home: NextPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 0.725, y: 0 }}
               transition={{
-                delay: 2,
+                delay: 1,
                 duration: 0.75,
                 ease: "easeInOut",
               }}
@@ -133,7 +133,7 @@ const Home: NextPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 0.725, y: 0 }}
             transition={{
-              delay: 3.5,
+              delay: 2.5,
               duration: 0.75,
               ease: "easeInOut",
             }}
