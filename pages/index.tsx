@@ -203,7 +203,7 @@ const Home: NextPage = () => {
               >
                 Web &amp; App
               </Title>
-              <Text>Some publically available samples</Text>
+              <Text>Some publically available projects</Text>
             </Group>
           </Center>
           <Center
@@ -412,7 +412,7 @@ const Home: NextPage = () => {
               }}
               color="gray"
             >
-              Download
+              Download PDF
             </Button>
           </Center>
           <CV />
