@@ -5,10 +5,12 @@ import {
   Box,
   Button,
   Card,
+  CardSection,
   Center,
   Container,
   Group,
   Image,
+  SimpleGrid,
   Space,
   Text,
   Title,
@@ -16,18 +18,18 @@ import {
 import type { NextPage } from "next";
 import Head from "next/head";
 import { motion } from "framer-motion";
-import { FaGithub, FaHandPointDown } from "react-icons/fa";
-import { SiTypescript } from "react-icons/fa";
-import { useViewportSize } from "@mantine/hooks";
+import { FaGithub, FaHandPointDown, FaLink, FaPlay } from "react-icons/fa";
 import { useState } from "react";
-import ReactPlayer from "react-player";
+import PortfolioCard from "../components/PortfolioCard";
+import YouTube from "../components/YouTube";
+import Gradient from "../components/Gradient";
 
 // export const thisIsAnUnusedExport =
 //   "this export only exists to disable fast refresh for this file";
 
 const Home: NextPage = () => {
   const [imageStolen, setImageStolen] = useState(false);
-  const viewport = useViewportSize();
+
   return (
     <>
       <Head>
@@ -180,115 +182,110 @@ const Home: NextPage = () => {
           </motion.div>
         </Center>
 
-        <motion.div
-          // Moving gradient background
-          initial={{
-            backgroundSize: "300%",
-            backgroundImage: "linear-gradient(-45deg, #ed4d60, #dd2d5f)",
-            backgroundPositionX: "50%",
-            backgroundPositionY: "50%",
-          }}
-          animate={{
-            backgroundImage: [
-              "linear-gradient(0deg, #ed4d60, #dd2d5f)",
-              "linear-gradient(90deg, #ed554d, #dd2db1)",
-              "linear-gradient(180deg, #db4771, #dd2d7c)",
-              "linear-gradient(270deg, #ec4949, #d83592)",
-              "linear-gradient(360deg, #ed4d60, #dd2d5f)",
-            ],
-            backgroundSize: ["125%", "175%", "150%", "125%"],
-            backgroundPositionX: ["50%", "25%", "50%", "75%", "50%"],
-            backgroundPositionY: ["50%", "75%", "50%", "25%", "50%"],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-          }}
-        >
+        <Gradient>
           <Center
             css={css`
-              padding: 1rem 0;
-              min-height: 100%;
+              height: 100%;
             `}
           >
-            <div
+            <SimpleGrid
               css={css`
-                max-width: 100%;
-                width: 350px;
-                overflow: hidden;
+                padding: 1rem;
+                place-items: center;
               `}
+              cols={3}
+              spacing={"md"}
+              breakpoints={[
+                { maxWidth: 1100, cols: 2 },
+                { maxWidth: 760, cols: 1 },
+              ]}
             >
-              <Card p="lg">
-                <Group direction="column" grow>
-                  <Group position="apart">
-                    <Text weight={500}>Hello Digital Twin</Text>
-                  </Group>
-                  <div
-                    css={css`
-                      position: relative;
-                      padding-top: 56.25%;
-                      border-radius: 0.5rem;
-                      overflow: hidden;
-                      width: 100%;
-                    `}
-                  >
-                    <iframe
-                      css={css`
-                        position: absolute;
-                        width: 100%;
-                        height: 100%;
-                        top: 0;
-                        left: 0;
-                        border: none;
-                      `}
-                      src="https://www.youtube.com/embed/S07OMZwGjOs"
-                      title="YouTube video player"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
-                  </div>
-                  <Text size="sm" style={{ lineHeight: 1.5 }}>
-                    Syncing a real life Arduino with a simulated 3D one on the
-                    web (Unity to Web using my{" "}
-                    <a href="https://github.com/VidunderGunder/unext">
-                      unext project
-                    </a>
-                    ).
-                  </Text>
-                  <Group direction="column" grow spacing={3}>
-                    <Button<"a">
-                      component="a"
-                      href="https://github.com/VidunderGunder/hello-twin"
-                      color="pink"
-                      fullWidth
-                      leftIcon={<FaGithub />}
-                    >
-                      Hello Twin (Backend + MCU)
-                    </Button>
-                    <Button<"a">
-                      component="a"
-                      href="https://github.com/VidunderGunder/hello-twin-unity"
-                      color="pink"
-                      fullWidth
-                      leftIcon={<FaGithub />}
-                    >
-                      Hello Twin (Unity)
-                    </Button>
-                  </Group>
-                  <Group spacing={5} position="center">
-                    <Badge color="grape">C++</Badge>
-                    <Badge color="grape">C#</Badge>
-                    <Badge color="blue">TypeScript</Badge>
-                    <Badge color="pink">React</Badge>
-                    <Badge color="dark">Next.js</Badge>
-                    <Badge color="dark">Unity</Badge>
-                    <Badge color="blue">Arduino</Badge>
-                  </Group>
-                </Group>
-              </Card>
-            </div>
+              <PortfolioCard
+                links={[
+                  {
+                    href: "https://www.edudata.no/",
+                    leftIcon: <FaLink />,
+                    children: <>Visit EduData</>,
+                  },
+                ]}
+                tools={[
+                  { color: "blue", children: <>TypeScript</> },
+                  { color: "pink", children: <>React</> },
+                  { color: "dark", children: <>Next.js</> },
+                  { color: "blue", children: <>Python</> },
+                  { color: "indigo", children: <>Jupyter</> },
+                ]}
+                image="/images/edudata.jpg"
+              >
+                <Text weight={500}>EduData</Text>
+                <Text size="sm">
+                  Teaching material and subject related data.
+                </Text>
+              </PortfolioCard>
+              <PortfolioCard
+                links={[
+                  {
+                    href: "https://github.com/VidunderGunder/hello-twin",
+                    leftIcon: <FaGithub />,
+                    children: <>Hello Twin (Backend + MCU)</>,
+                  },
+                  {
+                    href: "https://github.com/VidunderGunder/hello-twin-unity",
+                    leftIcon: <FaGithub />,
+                    children: <>Hello Twin (Unity)</>,
+                  },
+                ]}
+                tools={[
+                  { color: "grape", children: <>C++</> },
+                  { color: "grape", children: <>C#</> },
+                  { color: "blue", children: <>TypeScript</> },
+                  { color: "pink", children: <>React</> },
+                  { color: "dark", children: <>Next.js</> },
+                  { color: "dark", children: <>Unity</> },
+                  { color: "blue", children: <>Arduino</> },
+                ]}
+              >
+                <Text weight={500}>Hello Digital Twin</Text>
+                <YouTube
+                  src="https://www.youtube.com/embed/S07OMZwGjOs"
+                  aspectRatio={{
+                    width: 16,
+                    height: 8.495,
+                  }}
+                />
+                <Text size="sm">
+                  Syncing a real life Arduino with a simulated 3D one on the web
+                  (Unity to Web using my{" "}
+                  <a href="https://github.com/VidunderGunder/unext">
+                    unext project
+                  </a>
+                  ).
+                </Text>
+              </PortfolioCard>
+              <PortfolioCard
+                links={[
+                  {
+                    href: "https://looplearner.vercel.app/",
+                    leftIcon: <FaPlay />,
+                    children: <>Try LoopLearner</>,
+                  },
+                ]}
+                tools={[
+                  { color: "blue", children: <>TypeScript</> },
+                  { color: "pink", children: <>React</> },
+                  { color: "dark", children: <>Next.js</> },
+                ]}
+                image="/images/looplearner.png"
+              >
+                <Text weight={500}>LoopLearner</Text>
+                <Text size="sm">
+                  Tool for learning dance and music. Not quite finished, but
+                  kinda does the job in most cases.
+                </Text>
+              </PortfolioCard>
+            </SimpleGrid>
           </Center>
-        </motion.div>
+        </Gradient>
       </motion.div>
     </>
   );
