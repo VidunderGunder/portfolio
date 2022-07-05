@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const Gradient = forwardRef(function Gradient(
   { children, ...props }: ComponentPropsWithoutRef<typeof motion.div>,
-  ref: Ref<HTMLDivElement> | undefined
+  ref?: Ref<HTMLDivElement>
 ) {
   return (
     <motion.div

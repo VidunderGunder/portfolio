@@ -30,7 +30,7 @@ const PortfolioCard = forwardRef(function PortfolioCard(
     image?: string;
     cardProps?: ComponentPropsWithoutRef<typeof Card>;
   },
-  ref: Ref<HTMLDivElement> | undefined
+  ref?: Ref<HTMLDivElement>
 ) {
   return (
     <motion.div
@@ -41,6 +41,9 @@ const PortfolioCard = forwardRef(function PortfolioCard(
         overflow: hidden;
         border-radius: 0.5rem;
       `}
+      initial={{
+        boxShadow: "0 0 0 3px rgba(0, 0, 0, 0.05)",
+      }}
       whileHover={{
         boxShadow: "0 0 0 4px rgba(0, 0, 0, 0.125)",
         transition: { duration: 0.15 },
