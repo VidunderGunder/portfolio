@@ -1,11 +1,26 @@
 import { css } from "@emotion/react";
-import { Box, Center, Container, Image, Text, Title } from "@mantine/core";
+import {
+  Avatar,
+  Badge,
+  Box,
+  Button,
+  Card,
+  Center,
+  Container,
+  Group,
+  Image,
+  Space,
+  Text,
+  Title,
+} from "@mantine/core";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { motion } from "framer-motion";
-import { FaHandPointDown } from "react-icons/fa";
+import { FaGithub, FaHandPointDown } from "react-icons/fa";
+import { SiTypescript } from "react-icons/fa";
 import { useViewportSize } from "@mantine/hooks";
 import { useState } from "react";
+import ReactPlayer from "react-player";
 
 // export const thisIsAnUnusedExport =
 //   "this export only exists to disable fast refresh for this file";
@@ -55,10 +70,10 @@ const Home: NextPage = () => {
                 ease: "easeInOut",
               }}
               whileHover={{
-                scale: 1.025,
+                scale: 1.0125,
                 transition: { duration: 0.25 },
               }}
-              whileTap={{ scale: 0.975, transition: { duration: 0.05 } }}
+              whileTap={{ scale: 1, transition: { duration: 0.05 } }}
             >
               <Center>
                 <Image
@@ -190,7 +205,89 @@ const Home: NextPage = () => {
             repeat: Infinity,
           }}
         >
-          <Container></Container>
+          <Center
+            css={css`
+              padding: 1rem 0;
+              min-height: 100%;
+            `}
+          >
+            <div
+              css={css`
+                max-width: 100%;
+                width: 350px;
+                overflow: hidden;
+              `}
+            >
+              <Card p="lg">
+                <Group direction="column" grow>
+                  <Group position="apart">
+                    <Text weight={500}>Hello Digital Twin</Text>
+                  </Group>
+                  <div
+                    css={css`
+                      position: relative;
+                      padding-top: 56.25%;
+                      border-radius: 0.5rem;
+                      overflow: hidden;
+                      width: 100%;
+                    `}
+                  >
+                    <iframe
+                      css={css`
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        top: 0;
+                        left: 0;
+                        border: none;
+                      `}
+                      src="https://www.youtube.com/embed/S07OMZwGjOs"
+                      title="YouTube video player"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                  <Text size="sm" style={{ lineHeight: 1.5 }}>
+                    Syncing a real life Arduino with a simulated 3D one on the
+                    web (Unity to Web using my{" "}
+                    <a href="https://github.com/VidunderGunder/unext">
+                      unext project
+                    </a>
+                    ).
+                  </Text>
+                  <Group direction="column" grow spacing={3}>
+                    <Button<"a">
+                      component="a"
+                      href="https://github.com/VidunderGunder/hello-twin"
+                      color="pink"
+                      fullWidth
+                      leftIcon={<FaGithub />}
+                    >
+                      Hello Twin (Backend + MCU)
+                    </Button>
+                    <Button<"a">
+                      component="a"
+                      href="https://github.com/VidunderGunder/hello-twin-unity"
+                      color="pink"
+                      fullWidth
+                      leftIcon={<FaGithub />}
+                    >
+                      Hello Twin (Unity)
+                    </Button>
+                  </Group>
+                  <Group spacing={5} position="center">
+                    <Badge color="grape">C++</Badge>
+                    <Badge color="grape">C#</Badge>
+                    <Badge color="blue">TypeScript</Badge>
+                    <Badge color="pink">React</Badge>
+                    <Badge color="dark">Next.js</Badge>
+                    <Badge color="dark">Unity</Badge>
+                    <Badge color="blue">Arduino</Badge>
+                  </Group>
+                </Group>
+              </Card>
+            </div>
+          </Center>
         </motion.div>
       </motion.div>
     </>
